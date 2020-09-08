@@ -8,15 +8,15 @@ public class Player : MonoBehaviour
     [SerializeField] GameObject cardTemplate;
     [SerializeField] private Transform content;
 
-    private List<Card> cards;
+    private List<Card> _cards;
 
     private void Start()
     {
-        cards = new List<Card>();
+        _cards = new List<Card>();
 
         for(int i = 0; i < initialCardAmount; i++)
         {
-            cards.Add(CardManager.Instance.GetRandomCard());
+            _cards.Add(CardManager.Instance.GetRandomCard());
             var card = Instantiate(cardTemplate, content);
         }
     }
