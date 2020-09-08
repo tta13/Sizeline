@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -16,9 +17,16 @@ public class Player : MonoBehaviour
 
         for(int i = 0; i < initialCardAmount; i++)
         {
-            _cards.Add(CardManager.Instance.GetRandomCard());
+            var randomCard = CardManager.Instance.GetRandomCard();
+            _cards.Add(randomCard);
             var card = Instantiate(cardTemplate, content);
-            card.GetComponent<CardTemplate>().SetCard(_cards[i]);
+            card.GetComponent<CardTemplate>().SetCard(randomCard);
+            card.GetComponent<Button>().onClick.AddListener(() => SetCard(randomCard));
         }
+    }
+
+    private void SetCard(Card c)
+    {
+        GameManager.Instance.SetCurrentCard(c);
     }
 }
