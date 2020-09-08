@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField] private int initialCardAmount = 4;
+    [SerializeField] GameObject cardTemplate;
+    [SerializeField] private Transform content;
 
-    // Update is called once per frame
-    void Update()
+    private List<Card> cards;
+
+    private void Start()
     {
-        
+        cards = new List<Card>();
+
+        for(int i = 0; i < initialCardAmount; i++)
+        {
+            cards.Add(CardManager.Instance.GetRandomCard());
+            var card = Instantiate(cardTemplate, content);
+        }
     }
 }
