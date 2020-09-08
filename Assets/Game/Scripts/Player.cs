@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform content;
     [SerializeField] GameObject gamePanel;
     [SerializeField] GameObject endGame;
+    [SerializeField] GameObject arrow;
 
     private List<Card> _cards;
     private GameObject _lastCard;
@@ -38,6 +39,10 @@ public class Player : MonoBehaviour
     private void SetCard(GameObject g, Card c)
     {
         _lastCard = g;
+        arrow.SetActive(true);
+        var arrowTransform = arrow.transform;
+        arrowTransform.position = new Vector3(_lastCard.transform.position.x,
+           arrowTransform.position.y, arrowTransform.position.z);
         GameManager.Instance.SetCurrentCard(c);
     }
 
