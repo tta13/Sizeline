@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -27,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject cardTemplate;
     [SerializeField] private Transform content;
+    [SerializeField] private TMP_Text feedback;
     [SerializeField] private int initialCardAmount = 1;
 
     private List<Card> _cards;
@@ -103,14 +106,19 @@ public class GameManager : MonoBehaviour
 
     public void Place()
     {
-        if (!CheckAnswer())
+        _player.UseCard();
+
+        var isRight = CheckAnswer();
+        SetFeedback(isRight);
+
+        if (!isRight)
         {
             Debug.Log("Wrong answer");
             Destroy(_tempCard);
+            _currentCard = null;
             _player.DrawCard();
             return;
         }
-
 
         var siblingIndex = _tempCard.transform.GetSiblingIndex();
         _cards.Insert(siblingIndex, _tempCard.GetComponent<CardTemplate>().GetCard());
@@ -118,6 +126,12 @@ public class GameManager : MonoBehaviour
         _tempCard.GetComponent<Button>().onClick.AddListener(
             () => CreateTemporaryCard(siblingIndex));
         _tempCard = null;
+    }
+
+    private void SetFeedback(bool isRight)
+    {
+        feedback.gameObject.SetActive(true);
+        feedback.text = isRight ? "Boa!" : "Resposta errada!";
     }
 
     private bool CheckAnswer()
@@ -139,5 +153,10 @@ public class GameManager : MonoBehaviour
             answer = true;
 
         return answer;
+    }
+
+    public void Reload()
+    {
+        SceneManager.LoadScene(0);
     }
 }
