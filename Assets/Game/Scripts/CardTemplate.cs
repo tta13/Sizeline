@@ -16,15 +16,24 @@ public class CardTemplate : MonoBehaviour
         _myCard = card;
     }
 
+    public Card GetCard() => _myCard;
+
     bool _firstUpdate = true;
 
     private void Update()
     {
-        if (!_firstUpdate) return;
+        if (!_firstUpdate && !refresh) return;
 
         image.sprite = _myCard.sprite;
         nameTxt.text = _myCard.name;
 
         _firstUpdate = false;
+    }
+
+    bool refresh = false;
+
+    public void Refresh()
+    {
+        refresh = true;
     }
 }
