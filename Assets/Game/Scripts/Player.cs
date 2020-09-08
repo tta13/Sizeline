@@ -18,6 +18,7 @@ public class Player : MonoBehaviour
         {
             _cards.Add(CardManager.Instance.GetRandomCard());
             var card = Instantiate(cardTemplate, content);
+            card.GetComponent<CardTemplate>().SetCard(_cards[i]);
         }
     }
 }
