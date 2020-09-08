@@ -31,7 +31,7 @@ public class CardManager : MonoBehaviour
     {
         var index = Random.Range(0, cards.Count);
         var card = cards[index];
-        //cards.RemoveAt(index);
+        cards.RemoveAt(index);
         return card;
     }
 }
