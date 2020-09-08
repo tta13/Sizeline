@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0c1d2aab7cd9a704398b8fdcd781d0db, type: 3}
-  m_Name: Atom
+  m_Name: Terra
   m_EditorClassIdentifier: 
-  name: "\xC1tomo"
-  sprite: {fileID: 21300000, guid: 326993ff8011572428ec593dddbdefbe, type: 3}
-  size: 2
+  name: Terra
+  sprite: {fileID: 21300000, guid: 7e8b4e26b5b67b74289e54fc9ebe6ffa, type: 3}
+  size: 11
