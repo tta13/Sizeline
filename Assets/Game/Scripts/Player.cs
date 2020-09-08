@@ -29,4 +29,18 @@ public class Player : MonoBehaviour
     {
         GameManager.Instance.SetCurrentCard(c);
     }
+
+    public void UseCard()
+    {
+
+    }
+
+    public void DrawCard()
+    {
+        var randomCard = CardManager.Instance.GetRandomCard();
+        _cards.Add(randomCard);
+        var card = Instantiate(cardTemplate, content);
+        card.GetComponent<CardTemplate>().SetCard(randomCard);
+        card.GetComponent<Button>().onClick.AddListener(() => SetCard(randomCard));
+    }
 }
